@@ -1,0 +1,105 @@
+:root {
+  --milk: #f6f1e7;
+  --cream: #fffdf8;
+  --sand: #d7c4a5;
+  --olive: #68705a;
+  --olive-dark: #3f4939;
+  --gold: #b8955d;
+  --ink: #2d312a;
+  --muted: #6f7269;
+  --line: rgba(76, 82, 67, .16);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  width: 100%;
+  color: var(--ink);
+  font-family: "Alegreya Sans", sans-serif;
+  overflow-x: hidden;
+}
+h1, h2, h3, .serif { font-family: "Prata", serif; }
+img { display: block; }
+button, input, select, textarea { font: inherit; }
+section { scroll-margin-top: 84px; }
+
+.page-shell {
+  width: 100%;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(184,149,93,.08), transparent 28rem),
+    radial-gradient(circle at 92% 70%, rgba(104,112,90,.09), transparent 30rem);
+}
+.site-width { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .65rem;
+  text-transform: uppercase; letter-spacing: .18em; font-size: .76rem; font-weight: 700;
+}
+.eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+.gold-line { width: 64px; height: 1px; background: var(--gold); }
+.glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.soft-shadow { box-shadow: 0 22px 60px rgba(55, 49, 38, .11); }
+.lift { transition: transform .4s ease, box-shadow .4s ease; }
+.lift:hover { transform: translateY(-6px); box-shadow: 0 24px 55px rgba(55,49,38,.13); }
+
+.hero {
+  min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+  position: relative; display: flex; align-items: end; overflow: hidden;
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(27,31,25,.76) 0%, rgba(27,31,25,.44) 48%, rgba(27,31,25,.12) 100%);
+}
+.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-content { position: relative; z-index: 2; padding: 150px 0 90px; max-width: 760px; }
+
+.section-pad { padding: 110px 0; }
+.section-title { max-width: 760px; margin-top: 18px; line-height: 1.14; }
+.organic { border-radius: 46% 54% 48% 52% / 34% 42% 58% 66%; }
+.service-card img { aspect-ratio: 4/3; object-fit: cover; }
+.feature-card { border: 1px solid var(--line); }
+.gallery-grid {
+  display: grid; grid-template-columns: 1.2fr .8fr 1fr;
+  grid-auto-rows: 210px; gap: 16px;
+}
+.gallery-grid figure { overflow: hidden; border-radius: 4px; }
+.gallery-grid figure:nth-child(1),
+.gallery-grid figure:nth-child(5) { grid-row: span 2; }
+.gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+.gallery-grid figure:hover img { transform: scale(1.04); }
+
+.field {
+  width: 100%; border: 1px solid rgba(63,73,57,.22); background: rgba(255,255,255,.72);
+  border-radius: 14px; padding: 13px 14px; outline: none; transition: .25s;
+}
+.field:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(184,149,93,.13); }
+.focusable:focus-visible, a:focus-visible, button:focus-visible {
+  outline: 3px solid rgba(184,149,93,.65); outline-offset: 3px;
+}
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.faq-item.open .faq-answer { max-height: 220px; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-icon { transition: transform .25s ease; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.hidden-state { display: none !important; }
+
+@media (max-width: 900px) {
+  .section-pad { padding: 80px 0; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; }
+  .gallery-grid figure:nth-child(5) { grid-row: span 1; }
+}
+@media (max-width: 640px) {
+  .site-width { width: min(100% - 28px, 1180px); }
+  .hero-content { padding: 130px 0 62px; }
+  .section-pad { padding: 68px 0; }
+  .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
+  .gallery-grid figure:nth-child(1), .gallery-grid figure:nth-child(5) { grid-row: span 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
