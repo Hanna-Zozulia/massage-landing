@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const success = document.getElementById("booking-success");
   const summary = document.getElementById("booking-summary");
 
-  form.addEventListener("submit", event => {
+  form.addEventListener("submit", async event => {
     event.preventDefault();
     error.classList.add("hidden-state");
 
@@ -59,17 +59,33 @@ document.addEventListener("DOMContentLoaded", () => {
     submit.classList.add("hidden-state");
     loading.classList.remove("hidden-state");
 
-    window.setTimeout(() => {
+    try {
+      const response = await fetch("backend/submit-lead.php", {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Не удалось отправить заявку.");
+      }
+
       const date = new Date(dateInput.value + "T12:00:00");
       const formattedDate = new Intl.DateTimeFormat("ru-RU", {
         day: "numeric", month: "long", year: "numeric"
       }).format(date);
 
-      summary.textContent = `${serviceSelect.value} · ${formattedDate} · ${document.getElementById("booking-time").value}`;
+      summary.textContent = `${serviceSelect.value} · ${formattedDate} · ${document.getElementById("booking-contact").value}`;
       form.classList.add("hidden-state");
       success.classList.remove("hidden-state");
       loading.classList.add("hidden-state");
-    }, 700);
+    } catch (requestError) {
+      error.textContent = requestError.message || "Не удалось отправить заявку. Попробуйте ещё раз.";
+      error.classList.remove("hidden-state");
+      loading.classList.add("hidden-state");
+      submit.classList.remove("hidden-state");
+    }
   });
 
   document.getElementById("booking-reset").addEventListener("click", () => {

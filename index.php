@@ -1,3 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+require_once __DIR__ . '/config/bootstrap.php';
+
+try {
+  recordVisit(databaseConnection());
+} catch (Throwable $exception) {
+  error_log('Visit tracking failed: ' . $exception->getMessage());
+}
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -649,11 +661,12 @@
               </aside>
               <div class="p-7 md:p-12">
                 <form id="booking-form" novalidate="">
+                  <input type="hidden" name="csrf_token" value="<?php echo e(csrfToken()); ?>">
                   <div class="grid gap-5 md:grid-cols-2">
                     <div class="md:col-span-2"><label data-template-id="booking-service-label"
                         class="canva-text mb-2 block font-semibold" for="booking-service"
                         style="color: rgb(63, 73, 57); font-weight: 600; font-style: normal; font-size: 17px;">Услуга</label>
-                      <select id="booking-service" class="field" required="">
+                      <select id="booking-service" name="service" class="field" required="">
                         <option value="">Выберите услугу</option>
                         <option>Тайский массаж стоп</option>
                         <option>Шейно-воротниковый массаж</option>
@@ -666,24 +679,24 @@
                     <div><label data-template-id="booking-date-label" class="canva-text mb-2 block font-semibold"
                         for="booking-date"
                         style="color: rgb(63, 73, 57); font-weight: 600; font-style: normal; font-size: 17px;">Желаемая
-                        дата</label> <input id="booking-date" class="field" type="date" required="">
+                        дата</label> <input id="booking-date" name="preferred_date" class="field" type="date" required="">
                     </div>
                     <div>
                       <label data-template-id="booking-time-label" class="canva-text mb-2 block font-semibold" for="booking-email" style="color: rgb(63, 73, 57); font-weight: 600; font-style: normal; font-size: 17px;">Email</label>
-                      <input type="email" id="booking-email" class="field" placeholder="Введите ваш email" required="" />
+                      <input type="email" id="booking-email" name="email" class="field" placeholder="Введите ваш email" required="" />
                     </div>
                     <div>
                       <label data-template-id="booking-name-label" class="canva-text mb-2 block font-semibold" for="booking-name" style="color: rgb(63, 73, 57); font-weight: 600; font-style: normal; font-size: 17px;">Ваше имя</label>
-                      <input id="booking-name" class="field" type="text" autocomplete="name" placeholder="Введите ваше имя" required="">
+                      <input id="booking-name" name="name" class="field" type="text" autocomplete="name" placeholder="Введите ваше имя" required="">
                     </div>
                     <div>
                       <label data-template-id="booking-phone-label" class="canva-text mb-2 block font-semibold" for="booking-phone" style="color: rgb(63, 73, 57); font-weight: 600; font-style: normal; font-size: 17px;">Телефон</label>
-                      <input id="booking-phone" class="field" type="tel" autocomplete="tel" placeholder="Введите ваш номер телефона" required="">
+                      <input id="booking-phone" name="phone" class="field" type="tel" autocomplete="tel" placeholder="Введите ваш номер телефона" required="">
                     </div>
                     <div class="md:col-span-2"><label data-template-id="booking-contact-label"
                         class="canva-text mb-2 block font-semibold" for="booking-contact"
                         style="color: rgb(63, 73, 57); font-weight: 600; font-style: normal; font-size: 17px;">Как
-                        удобнее получить подтверждение?</label> <select id="booking-contact" class="field" required="">
+                        удобнее получить подтверждение?</label> <select id="booking-contact" name="contact_method" class="field" required="">
                         <option value="">Выберите способ связи</option>
                         <option>WhatsApp</option>
                         <option>Telegram</option>
