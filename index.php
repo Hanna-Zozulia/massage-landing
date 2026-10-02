@@ -20,7 +20,7 @@ try {
   <meta name="description"
     content="Массаж в Кохтла-Ярве и Йыхви для женщин. Массаж спины, шейно-воротниковой зоны, стоп и всего тела. Индивидуальный подход и онлайн-запись.">
   <meta name="keywords"
-    content="массаж, массажист Анна, тайский массаж стоп, расслабляющий массаж, массаж спины, лимфодренажный массаж">
+    content="массаж, массажист Ханна, тайский массаж стоп, расслабляющий массаж, массаж спины, лимфодренажный массаж">
   <meta name="theme-color" content="#f4efe5">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Массажист Ханна — пространство заботы о теле">
@@ -34,7 +34,7 @@ try {
   <link
     href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;600;700&amp;family=Prata&amp;display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="public/styles.css">
 </head>
 
 <body data-template-id="__page-root" style="background: rgb(246, 241, 231);">
@@ -45,7 +45,7 @@ try {
         <div class="site-width flex h-20 items-center justify-between"><a href="#home"
             class="flex items-center gap-3 text-[#3f4939]"> <span
               class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-[#b8955d]/60"> 
-                <img src="img/logo.png" alt="Logo" class="h-8 w-8 rounded-full object-cover"></span> <span data-template-id="brand-name"
+                <img src="public/img/logo.png" alt="Logo" class="h-8 w-8 rounded-full object-cover"></span> <span data-template-id="brand-name"
               class="canva-text serif"
               style="color: rgb(63, 73, 57); font-weight: 400; font-style: normal; font-size: 18px;">Кохтла-Ярве ·
               массаж</span> </a>
@@ -83,7 +83,7 @@ try {
     </header>
     <main>
       <section id="home" class="hero"><img data-template-id="hero-image" class="canva-image hero-image" loading="lazy"
-          src="img/35884502.jpeg"
+          src="public/img/35884502.jpeg"
           alt="Элегантный массажный кабинет с полотенцем, свечой и эфирными маслами">
         <div class="site-width hero-content"><span data-template-id="hero-eyebrow"
             class="canva-text eyebrow text-[#eadfc9]"
@@ -111,7 +111,7 @@ try {
             <div class="absolute -left-5 -top-5 h-32 w-32 rounded-full border border-[#b8955d]/40"></div><img
               data-template-id="about-image"
               class="canva-image organic relative h-[560px] w-full object-cover soft-shadow" loading="lazy"
-              src="img/9335974.jpeg"
+              src="public/img/9335974.jpeg"
               alt="Профессиональный массажист проводит расслабляющий сеанс в спокойном кабинете">
             <div data-template-id="about-note"
               class="canva-card absolute -bottom-7 right-0 max-w-[250px] rounded-2xl p-6 shadow-xl"
@@ -239,7 +239,7 @@ try {
             style="background: rgb(104, 112, 90);">
             <div class="grid lg:grid-cols-2"><img data-template-id="service-foot-image"
                 class="canva-image h-full min-h-[420px] w-full object-cover" loading="lazy"
-                src="img/6188032.jpeg"
+                src="public/img/6188032.jpeg"
                 alt="Расслабляющий массаж стоп в спокойной атмосфере SPA">
               <div class="flex flex-col justify-center p-8 md:p-12"><span data-template-id="service-main-label"
                   class="canva-tag w-fit rounded-full px-4 py-2"
@@ -277,7 +277,7 @@ try {
               class="canva-card service-card lift overflow-hidden rounded-[26px]"
               style="background: rgb(255, 253, 248);"><img data-template-id="service-relax-image"
                 class="canva-image w-full" loading="lazy"
-                src="img/3865792.jpeg"
+                src="public/img/3865792.jpeg"
                 alt="Расслабляющий массаж спины в спокойном SPA">
               <div class="p-7">
                 <h3 data-template-id="service-relax-title" class="canva-text"
@@ -301,7 +301,7 @@ try {
               class="canva-card service-card lift overflow-hidden rounded-[26px]"
               style="background: rgb(255, 253, 248);"><img data-template-id="service-back-image"
                 class="canva-image w-full" loading="lazy"
-                src="img/6628586.jpeg"
+                src="public/img/6628586.jpeg"
                 alt="Руки массажиста работают с напряжением в спине">
               <div class="p-7">
                 <h3 data-template-id="service-back-title" class="canva-text"
@@ -325,7 +325,7 @@ try {
               class="canva-card service-card lift overflow-hidden rounded-[26px]"
               style="background: rgb(255, 253, 248);"><img data-template-id="service-body-image"
                 class="canva-image w-full" loading="lazy"
-                src="img/4599396.jpeg"
+                src="public/img/4599396.jpeg"
                 alt="Профессиональный общий массаж тела в светлом кабинете">
               <div class="p-7">
                 <h3 data-template-id="service-body-title" class="canva-text"
@@ -434,7 +434,7 @@ try {
               себе заботу</a>
           </div><img data-template-id="audience-image"
             class="canva-image reveal h-[560px] w-full rounded-[40px] object-cover soft-shadow" loading="lazy"
-            src="img/6628587.jpeg"
+            src="public/img/6628587.jpeg"
             alt="Женщина отдыхает во время массажа в спокойной атмосфере">
         </div>
       </section>
@@ -453,32 +453,32 @@ try {
           <div class="gallery-grid mt-12 reveal">
             <figure>
               <img data-template-id="gallery-image-1" class="canva-image" loading="lazy"
-                src="img/3188.jpg"
+                src="public/img/3188.jpg"
                 alt="Уютная SPA-атмосфера со свечами, полотенцами и цветком">
             </figure>
             <figure>
               <img data-template-id="gallery-image-2" class="canva-image" loading="lazy"
-                src="img/3865676.jpeg"
+                src="public/img/3865676.jpeg"
                 alt="Лаванда и натуральные массажные масла">
             </figure>
             <figure>
               <img data-template-id="gallery-image-3" class="canva-image" loading="lazy"
-                src="img/282892.jpeg"
+                src="public/img/282892.jpeg"
                 alt="Аккуратно свернутые белые полотенца в плетеной корзине">
             </figure>
             <figure>
               <img data-template-id="gallery-image-4" class="canva-image" loading="lazy"
-                src="img/8789633.jpeg"
+                src="public/img/8789633.jpeg"
                 alt="Минималистичная композиция со свечой и камнем">
             </figure>
             <figure>
               <img data-template-id="gallery-image-5" class="canva-image" loading="lazy"
-                src="img/6628520.jpeg"
+                src="public/img/6628520.jpeg"
                 alt="Светлый массажный кабинет с большими окнами">
             </figure>
             <figure>
               <img data-template-id="gallery-image-6" class="canva-image" loading="lazy"
-                src="img/35439440.jpeg"
+                src="public/img/35439440.jpeg"
                 alt="Нежные цветы, плавающие в чаше с водой">
             </figure>
           </div>
@@ -497,7 +497,7 @@ try {
               style="background: rgb(255, 253, 248);">
               <div class="flex items-center gap-4"><img data-template-id="review-photo-1"
                   class="canva-image h-14 w-14 rounded-full object-cover" loading="lazy"
-                  src="img/1239291.jpeg"
+                  src="public/img/1239291.jpeg"
                   alt="Улыбающаяся молодая женщина в очках">
                 <div>
                   <h3 data-template-id="review-name-1" class="canva-text"
@@ -516,7 +516,7 @@ try {
               style="background: rgb(255, 253, 248);">
               <div class="flex items-center gap-4"><img data-template-id="review-photo-2"
                   class="canva-image h-14 w-14 rounded-full object-cover" loading="lazy"
-                  src="img/774909.jpeg"
+                  src="public/img/774909.jpeg"
                   alt="Портрет радостной женщины с теплой улыбкой">
                 <div>
                   <h3 data-template-id="review-name-2" class="canva-text"
@@ -535,7 +535,7 @@ try {
               style="background: rgb(255, 253, 248);">
               <div class="flex items-center gap-4"><img data-template-id="review-photo-3"
                   class="canva-image h-14 w-14 rounded-full object-cover" loading="lazy"
-                  src="img/1065084.jpeg"
+                  src="public/img/1065084.jpeg"
                   alt="Портрет улыбающейся молодой женщины">
                 <div>
                   <h3 data-template-id="review-name-3" class="canva-text"
@@ -743,7 +743,7 @@ try {
       <section class="section-pad bg-[#3f4939]">
         <div class="site-width grid overflow-hidden rounded-[36px] bg-[#f4efe5] lg:grid-cols-2"><img
             data-template-id="certificate-image" class="canva-image h-full min-h-[430px] w-full object-cover"
-            loading="lazy" src="img/12899589.jpeg"
+            loading="lazy" src="public/img/12899589.jpeg"
             alt="Элегантные подарочные сертификаты в конвертах с восковыми печатями">
           <div class="flex flex-col justify-center p-8 md:p-14"><span data-template-id="certificate-eyebrow"
               class="canva-text eyebrow"
@@ -898,7 +898,7 @@ try {
       </div>
     </footer>
   </div>
-  <script src="script.js"></script>
+  <script src="public/script.js"></script>
 
 </body>
 

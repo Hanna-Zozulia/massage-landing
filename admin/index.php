@@ -20,36 +20,46 @@ $recentVisits = $pdo->query(
 )->fetchAll();
 ?><!doctype html>
 <html lang="ru">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Админка</title></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админка</title>
+  <link rel="stylesheet" href="../public/admin.css">
+</head>
 <body>
-<header><h1>Админка</h1><form method="post" action="logout.php"><?php echo adminCsrfInput(); ?><button type="submit">Выйти</button></form></header>
-<main>
-  <section>
-    <h2>Сводка</h2>
-    <p>Всего заявок: <?php echo $leadCount; ?></p>
-    <p>Новых заявок: <?php echo $newLeadCount; ?></p>
-    <p>Всего посещений: <?php echo $visitCount; ?></p>
-    <p>Уникальных посетителей: <?php echo $uniqueVisitCount; ?></p>
-  </section>
-  <section><h2>Последние заявки</h2>
-    <table><thead><tr><th>Имя</th><th>Email</th><th>Телефон</th><th>Дата</th><th>Статус</th><th></th></tr></thead><tbody>
-    <?php foreach ($leads as $lead): ?><tr>
-      <td><?php echo e($lead['name']); ?></td><td><?php echo e($lead['email']); ?></td><td><?php echo e($lead['phone']); ?></td>
-      <td><?php echo e($lead['created_at']); ?></td><td><?php echo e($lead['status']); ?></td>
-      <td><a href="lead.php?id=<?php echo (int) $lead['id']; ?>">Открыть</a></td>
-    </tr><?php endforeach; ?>
-    </tbody></table>
-  </section>
-  <section><h2>Посещения по дням</h2>
-    <table><thead><tr><th>Дата</th><th>Всего</th><th>Уникальных</th></tr></thead><tbody>
-    <?php foreach ($dailyVisits as $visit): ?><tr><td><?php echo e($visit['visit_date']); ?></td><td><?php echo (int) $visit['total']; ?></td><td><?php echo (int) $visit['unique_total']; ?></td></tr><?php endforeach; ?>
-    </tbody></table>
-  </section>
-  <section><h2>Последние посещения</h2>
-    <table><thead><tr><th>Дата и время</th><th>Анонимный ID</th><th>User-Agent</th></tr></thead><tbody>
-    <?php foreach ($recentVisits as $visit): ?><tr><td><?php echo e($visit['visited_at']); ?></td><td><?php echo e($visit['visitor_token']); ?></td><td><?php echo e($visit['user_agent']); ?></td></tr><?php endforeach; ?>
-    </tbody></table>
-  </section>
+  <header>
+    <h1>Админка</h1>
+    <form method="post" action="logout.php"><?php echo adminCsrfInput(); ?><button type="submit">Выйти</button>
+    </form>
+  </header>
+  <main>
+    <section>
+      <h2>Сводка</h2>
+      <p>Всего заявок: <?php echo $leadCount; ?></p>
+      <p>Новых заявок: <?php echo $newLeadCount; ?></p>
+      <p>Всего посещений: <?php echo $visitCount; ?></p>
+      <p>Уникальных посетителей: <?php echo $uniqueVisitCount; ?></p>
+    </section>
+    <section>
+      <h2>Последние заявки</h2>
+      <table><thead><tr><th>Имя</th><th>Email</th><th>Телефон</th><th>Дата</th><th>Статус</th><th></th></tr></thead><tbody>
+      <?php foreach ($leads as $lead): ?><tr>
+        <td><?php echo e($lead['name']); ?></td><td><?php echo e($lead['email']); ?></td><td><?php echo e($lead['phone']); ?></td>
+        <td><?php echo e($lead['created_at']); ?></td><td><?php echo e($lead['status']); ?></td>
+        <td><a href="lead.php?id=<?php echo (int) $lead['id']; ?>">Открыть</a></td>
+      </tr><?php endforeach; ?>
+      </tbody></table>
+    </section>
+    <section><h2>Посещения по дням</h2>
+      <table><thead><tr><th>Дата</th><th>Всего</th><th>Уникальных</th></tr></thead><tbody>
+      <?php foreach ($dailyVisits as $visit): ?><tr><td><?php echo e($visit['visit_date']); ?></td><td><?php echo (int) $visit['total']; ?></td><td><?php echo (int) $visit['unique_total']; ?></td></tr><?php endforeach; ?>
+      </tbody></table>
+    </section>
+    <section><h2>Последние посещения</h2>
+      <table><thead><tr><th>Дата и время</th><th>Анонимный ID</th><th>User-Agent</th></tr></thead><tbody>
+      <?php foreach ($recentVisits as $visit): ?><tr><td><?php echo e($visit['visited_at']); ?></td><td><?php echo e($visit['visitor_token']); ?></td><td><?php echo e($visit['user_agent']); ?></td></tr><?php endforeach; ?>
+      </tbody></table>
+    </section>
 </main>
 </body>
 </html>
