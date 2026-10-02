@@ -101,7 +101,7 @@ try {
             'Reply-To: ' . $email,
             'Content-Type: text/plain; charset=UTF-8',
         ];
-        $mailSent = mail(requiredEnv('MAIL_TO'), $mailSubject, $mailBody, implode("\r\n", $headers));
+        $mailSent = @mail(requiredEnv('MAIL_TO'), $mailSubject, $mailBody, implode("\r\n", $headers));
     } catch (Throwable $mailException) {
         error_log('Lead email preparation failed: ' . $mailException->getMessage());
     }
