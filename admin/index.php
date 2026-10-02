@@ -15,8 +15,9 @@ $dailyVisits = $pdo->query(
     'SELECT DATE(visited_at) AS visit_date, COUNT(*) AS total, COUNT(DISTINCT visitor_token) AS unique_total
      FROM visits GROUP BY DATE(visited_at) ORDER BY visit_date DESC LIMIT 30'
 )->fetchAll();
-$recentVisits = $pdo->query(
-    'SELECT visited_at, visitor_token, user_agent FROM visits ORDER BY visited_at DESC LIMIT 30'
+$visitorSummaries = $pdo->query(
+  'SELECT visitor_token, COUNT(*) AS visit_count, MAX(visited_at) AS last_visit
+   FROM visits GROUP BY visitor_token ORDER BY last_visit DESC LIMIT 30'
 )->fetchAll();
 ?><!doctype html>
 <html lang="ru">
@@ -42,24 +43,73 @@ $recentVisits = $pdo->query(
     </section>
     <section>
       <h2>Последние заявки</h2>
-      <table><thead><tr><th>Имя</th><th>Email</th><th>Телефон</th><th>Дата</th><th>Статус</th><th></th></tr></thead><tbody>
-      <?php foreach ($leads as $lead): ?><tr>
-        <td><?php echo e($lead['name']); ?></td><td><?php echo e($lead['email']); ?></td><td><?php echo e($lead['phone']); ?></td>
-        <td><?php echo e($lead['created_at']); ?></td><td><?php echo e($lead['status']); ?></td>
-        <td><a href="lead.php?id=<?php echo (int) $lead['id']; ?>">Открыть</a></td>
-      </tr><?php endforeach; ?>
-      </tbody></table>
+      <table>
+        <thead>
+          <tr>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Дата</th>
+            <th>Статус</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+      <?php foreach ($leads as $lead): ?>
+        <tr>
+          <td><?php echo e($lead['name']); ?></td>
+          <td><?php echo e($lead['email']); ?></td>
+          <td><?php echo e($lead['phone']); ?></td>
+          <td><?php echo e($lead['created_at']); ?></td>
+          <td><?php echo e($lead['status']); ?></td>
+          <td><a href="lead.php?id=<?php echo (int) $lead['id']; ?>">Открыть</a></td>
+        </tr><?php endforeach; ?>
+      </tbody>
+    </table>
     </section>
-    <section><h2>Посещения по дням</h2>
-      <table><thead><tr><th>Дата</th><th>Всего</th><th>Уникальных</th></tr></thead><tbody>
-      <?php foreach ($dailyVisits as $visit): ?><tr><td><?php echo e($visit['visit_date']); ?></td><td><?php echo (int) $visit['total']; ?></td><td><?php echo (int) $visit['unique_total']; ?></td></tr><?php endforeach; ?>
-      </tbody></table>
+    <section>
+      <h2>Посещения по дням</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Дата</th>
+            <th>Всего</th>
+            <th>Уникальных</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($dailyVisits as $visit): ?>
+          <tr>
+            <td><?php echo e($visit['visit_date']); ?></td>
+            <td><?php echo (int) $visit['total']; ?></td>
+            <td><?php echo (int) $visit['unique_total']; ?></td>
+          </tr><?php endforeach; ?>
+        </tbody>
+      </table>
     </section>
-    <section><h2>Последние посещения</h2>
-      <table><thead><tr><th>Дата и время</th><th>Анонимный ID</th><th>User-Agent</th></tr></thead><tbody>
-      <?php foreach ($recentVisits as $visit): ?><tr><td><?php echo e($visit['visited_at']); ?></td><td><?php echo e($visit['visitor_token']); ?></td><td><?php echo e($visit['user_agent']); ?></td></tr><?php endforeach; ?>
-      </tbody></table>
+    <section>
+      <h2>Посетители</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Посетитель</th>
+            <th>Статус</th>
+            <th>Посещений</th>
+            <th>Последнее посещение</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($visitorSummaries as $visitorNumber => $visitor): ?>
+          <?php $visitTotal = (int) $visitor['visit_count']; ?>
+          <tr>
+            <td>Посетитель #<?php echo $visitorNumber + 1; ?></td>
+            <td><?php echo $visitTotal > 1 ? 'Вернувшийся посетитель' : 'Новый посетитель'; ?></td>
+            <td><?php echo $visitTotal; ?></td>
+            <td><?php echo e($visitor['last_visit']); ?></td>
+          </tr><?php endforeach; ?>
+        </tbody>
+      </table>
     </section>
-</main>
+  </main>
 </body>
 </html>

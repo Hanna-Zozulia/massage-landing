@@ -71,12 +71,16 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(result.message || "Не удалось отправить заявку.");
       }
 
-      const date = new Date(dateInput.value + "T12:00:00");
+      const selectedService = serviceSelect.value;
+      const selectedDate = dateInput.value;
+      const selectedContact = document.getElementById("booking-contact").value;
+      const date = new Date(selectedDate + "T12:00:00");
       const formattedDate = new Intl.DateTimeFormat("ru-RU", {
         day: "numeric", month: "long", year: "numeric"
       }).format(date);
 
-      summary.textContent = `${serviceSelect.value} · ${formattedDate} · ${document.getElementById("booking-contact").value}`;
+      form.reset();
+      summary.textContent = `${selectedService} · ${formattedDate} · ${selectedContact}`;
       form.classList.add("hidden-state");
       success.classList.remove("hidden-state");
       loading.classList.add("hidden-state");

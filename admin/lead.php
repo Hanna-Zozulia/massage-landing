@@ -19,7 +19,13 @@ if (!$lead) {
 }
 ?><!doctype html>
 <html lang="ru">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Заявка #<?php echo (int) $lead['id']; ?></title></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заявка #<?php echo (int) $lead['id']; ?></title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="../public/admin.css">
+</head>
 <body>
 <main>
   <p><a href="index.php">Назад к списку</a></p>
