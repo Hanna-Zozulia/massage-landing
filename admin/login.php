@@ -23,11 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?><!doctype html>
 <html lang="ru">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Вход в админку</title></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в админку</title>
+    <link rel="stylesheet" href="../public/admin.css">
+</head>
 <body>
 <main>
   <h1>Вход в админку</h1>
-  <?php if ($error !== ''): ?><p role="alert"><?php echo e($error); ?></p><?php endif; ?>
+  <?php if ($error !== ''): ?>
+    <p role="alert"><?php echo e($error); ?></p><?php endif; ?>
   <form method="post">
     <?php echo adminCsrfInput(); ?>
     <label>Email <input type="email" name="email" required autocomplete="username"></label>
