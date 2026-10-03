@@ -1,0 +1,24 @@
+Options -Indexes
+
+RewriteEngine On
+
+# Keep production traffic encrypted. Local HTTP development remains available.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Do not expose configuration, database, test, or utility files.
+<FilesMatch "^(?:\.env(?:\..*)?|.*\.(?:sql|log))$">
+    Require all denied
+</FilesMatch>
+
+# Block internal application directories when the project root is the web root.
+RewriteRule ^(?:config|database|tests|tools)(?:/|$) - [F,L,NC]
+
+# Disable access to hidden files other than this .htaccess file.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Prevent PHP execution in the public asset directory.
+RewriteRule ^public/.*\.php$ - [F,L,NC]

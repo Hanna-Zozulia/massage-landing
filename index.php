@@ -13,8 +13,6 @@ try {
 <!doctype html>
 <html lang="ru">
 <head>
-  <script src="/_sdk/83d6dfdadcd4750a.telemetry_sdk.js"
-    integrity="sha512-XS4Dvzp6vbagZS9vFErihvr8aO3S0tH78KWUefn06fmL4WYqryBtZj/IOLITYj7dFA4gPVvPg1W/JB1DK3uLNQ=="></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
